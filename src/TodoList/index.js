@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import './TodoList.css';
 
 function TodoList({ children }) {
@@ -7,5 +9,9 @@ function TodoList({ children }) {
     </ul>
   );
 }
+
+TodoList.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export { TodoList };

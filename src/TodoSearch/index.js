@@ -1,22 +1,25 @@
-import './TodoSearch.css';
 import React from 'react';
+import PropTypes from 'prop-types';
+import './TodoSearch.css';
 
-function TodoSearch({
-    searchValue,
-    setSearchValue,
-}) {
+function TodoSearch({ searchValue, setSearchValue }) {
+    const handleChange = (event) => {
+        setSearchValue(event.target.value);
+    };
 
     return (
         <input
             placeholder="Busca en tus pendientes"
             className="TodoSearch"
             value={searchValue}
-            onChange={(event) => {
-                console.log(event.target.value);
-                setSearchValue(event.target.value);
-            }}
+            onChange={handleChange}
         />
     );
 }
+
+TodoSearch.propTypes = {
+    searchValue: PropTypes.string.isRequired,
+    setSearchValue: PropTypes.func.isRequired
+};
 
 export { TodoSearch };

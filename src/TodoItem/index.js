@@ -1,27 +1,35 @@
-import './TodoItem.css';
 import React from 'react';
-import { GoCheck } from "react-icons/go";
-import { GoX } from "react-icons/go";
+import PropTypes from 'prop-types';
+import { GoCheck, GoX } from 'react-icons/go';
+import './TodoItem.css';
 
-
-function TodoItem(props) {
+function TodoItem({ text, completed, onComplete, onDeleteTodo }) {
     return (
         <li className="TodoItem">
-            <span className={`Icon Icon-check ${props.completed && "Icon-check--active"}`}
-                onClick={props.onComplete}
+            <span 
+                className={`Icon Icon-check ${completed && "Icon-check--active"}`}
+                onClick={onComplete}
             >
-            <GoCheck className='Icon-check'></GoCheck>
+                <GoCheck className='Icon-check' />
             </span>
-            <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
-            {props.text}
+            <p className={`TodoItem-p ${completed && "TodoItem-p--complete"}`}>
+                {text}
             </p>
-            <span className="Icon Icon-delete"
-                onClick={props.onDeleteTodo}
+            <span 
+                className="Icon Icon-delete"
+                onClick={onDeleteTodo}
             >
-            <GoX className='Icon-delete'></GoX>
+                <GoX className='Icon-delete' />
             </span>
         </li>
     );
 }
+
+TodoItem.propTypes = {
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    onComplete: PropTypes.func.isRequired,
+    onDeleteTodo: PropTypes.func.isRequired
+};
 
 export { TodoItem };
